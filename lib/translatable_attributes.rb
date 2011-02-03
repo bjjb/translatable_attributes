@@ -41,7 +41,7 @@ module TranslatableAttributes
     # `title_de=`, `body_en`, `body_en=`, `body_de` and `body_de=`
     def translatable_attribute_accessor(*attributes)
       attributes.each do |attr|
-        I18n.available_locales.map(&:to_s).each do |locale|
+        I18n::Backend::ActiveRecord::Translation.available_locales.map(&:to_s).each do |locale|
           class_eval do
             name = "#{attr.to_s}_#{locale.gsub('-', '_').downcase}"
 

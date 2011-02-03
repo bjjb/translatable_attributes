@@ -24,7 +24,8 @@ class TranslatableAttributesTest < Test::Unit::TestCase
     end
 
     I18n.backend = I18n::Backend::ActiveRecord.new
-    I18n.available_locales = %W(en de-DE)
+    I18n::Backend::ActiveRecord::Translation.create(:key => 'x', :value => 'X', :locale => :en)
+    I18n::Backend::ActiveRecord::Translation.create(:key => 'x', :value => 'X', :locale => :de_de)
 
     Model.send(:include, TranslatableAttributes)
     Model.send(:translatable_attribute_accessor, :foo)
