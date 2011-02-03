@@ -52,4 +52,4 @@ Copyright
 
 Released under a [GPL][copy] - no responsibility, etc.
 
-[copy]: [https://github.com/jjbuckley/translatable_attributes/raw/master/COPYING]
+[copy]: https://github.com/jjbuckley/translatable_attributes/raw/master/COPYING
