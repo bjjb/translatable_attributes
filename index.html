@@ -17,12 +17,67 @@
         text-shadow: 0px 0px 5px #333333;
         font-family: "Georgia", monospace;
       }
+      pre {
+        display: block;
+        width: 70%;
+        background-color: #eeeeee;
+        color: #222222;
+        border: 1px solid #cccccc;
+      }
     </style>
   </head>
   <body>
-    <h1>Translatable Attributes</h1>
 
-    <p>This module makes it easy to add extra columns to an ActiveRecord model, which
-    are translatable on the fly.</p>
+<h1>Translatable Attributes</h1>
+
+<p>Works with I18n to allow you to magically translate an attribute of an object.</p>
+
+<p>Including this module into your model will allow you to add arbitrary
+attributes whose values are persisted in multiple languages in the database.</p>
+
+<p>For example, supposing you have an online shop, and you need to store the
+description of products in English and German. First, you should ensure that
+<code>I18n.available_locales</code> returns  <code>[:en, :de]</code> (at least), for this example.
+Then you can do this:</p>
+
+<pre><code>class Product
+  include TranslatableAttributes
+  translatable_attribute_accessor :description
+end
+
+product = Product.create(
+  :description_en =&gt; "English",
+  :description_de =&gt; "Kein Englisch!"
+)
+</code></pre>
+
+<p>The descriptions will be persisted in the translations table (or whatever
+your I18n::Backend::ActiveRecord is using - see that gem for more info),
+with the key 'products.123.description'.</p>
+
+<h2>Installation</h2>
+
+<pre><code>gem install translatable_attributes
+</code></pre>
+
+<p>or in a Rails projects, add this to your Gemfile</p>
+
+<pre><code>gem 'translatable_attributes'
+</code></pre>
+
+<p>It pulls in its dependencies itself.</p>
+
+<h2>Caveats</h2>
+
+<p>This is a first version, so it may have bugs, and could certainly be improved.
+Please feel free to do so!</p>
+
+<h2>Authors</h2>
+
+<p>JJ Buckley <a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#106;&#x6a;&#64;&#98;&#x6a;&#106;&#98;&#x2e;&#x6f;&#x72;&#103;">&#x6a;&#x6a;&#64;&#x62;&#106;&#106;&#98;&#x2e;&#111;&#114;&#x67;</a></p>
+
+<h2>Copyright</h2>
+
+<p>Released under a <a href="[https://github.com/jjbuckley/translatable_attributes/raw/master/COPYING]">GPL</a> - no responsibility, etc.</p>
   </body>
 </html>
