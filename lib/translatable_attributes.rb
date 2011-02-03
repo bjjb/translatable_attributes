@@ -8,6 +8,7 @@ require 'i18n/active_record'
 # I18n.available_locales returns [:en, :de] (at least).
 #
 #     class Product
+#       include TranslatableAttributes
 #       translatable_attribute_accessor :description
 #     end
 #     
